@@ -112,6 +112,9 @@ class ProxyStorage extends StorageBase {
             this._keys = Object.keys(this._store)
         }
     }
+    get store() {
+        return this._store;
+    }
     _getItem(key) {
         if (this._store) {
             return this._store.getItem(key);

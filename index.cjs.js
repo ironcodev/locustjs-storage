@@ -259,6 +259,11 @@ var ProxyStorage = /*#__PURE__*/function (_StorageBase2) {
         this._store.clear();
       }
     }
+  }, {
+    key: "store",
+    get: function get() {
+      return this._store;
+    }
   }]);
 
   return ProxyStorage;
