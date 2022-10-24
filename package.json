@@ -1,11 +1,13 @@
 {
   "name": "locustjs-storage",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "This library provides storage classes.",
   "main": "index.cjs.js",
   "module": "index.esm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel index.esm.js -o index.cjs.js",
+    "test": "jest",
+    "mest": "node -r esm ./tests/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +18,8 @@
     "locustjs",
     "storage",
     "localStorage",
-    "sessionStorage"
+    "sessionStorage",
+    "json"
   ],
   "author": "Iron Code",
   "license": "MIT",
@@ -27,5 +30,14 @@
   "dependencies": {
     "locustjs-base": "^1.0.12",
     "locustjs-exception": "^1.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "babel-jest": "^29.2.1",
+    "esm": "^3.2.25",
+    "jest": "^29.2.1"
   }
 }
