@@ -1,4 +1,4 @@
-# locustjs-storage
+# @locustjs/storage
 This library presents storage in an abstract way. It provides an abstract `StorageBase` class and wrappers around `localStorage` and `sessionStorage` as implementations of the base abstract `StorageBase` class.
 
 The aim of the library is loose coupling and decoupling an application dependency on a specific storage.
@@ -11,7 +11,7 @@ The abstraction provided by this library enables us to define storages other tha
 This is the main abstract storage class that defines structure of all storage classes.
 
 #### Public Methods
-| method | description |
+| method/property | description |
 |--------|-------------|
 | `getItem(key):any` | Retrieves an item from storage by its key |
 | `setItem(key, item):void` | Saves an item in storage by its key |
@@ -20,7 +20,7 @@ This is the main abstract storage class that defines structure of all storage cl
 | `containsKey(key):bool` | Checks whether an item exists in the storage or not. |
 | `keyIndex(key):number` | Returns back index of an item in the storage by its key. |
 | `key(index):string` | Returns back key of an item at given index. |
-| `keys():string[]` | Returns back all items' keys. |
+| `keys:string[]` | Returns back all items' keys. |
 
 #### Public Properties
 | property | type | description |
@@ -40,7 +40,7 @@ Sub-classes should override and implement these methods.
 Using `serialize/deserialize` methods enables us to define sub-classes to perform operations other than just serializing or deserializing values. For example, we can define classes to automatically `encrypt/decrypt` or `compress/decompress` items in the storage before storing and after retrieving them.
 
 ## Implementations
-`locustjs-storage` provides 6 sub-classes for `StorageBase`.
+`@locustjs/storage` provides 6 sub-classes for `StorageBase`.
 
 | Sub-Class | Description |
 |-----------|-------------|
@@ -49,7 +49,7 @@ Using `serialize/deserialize` methods enables us to define sub-classes to perfor
 | `SessionStorage` | This is a wrapper around `window.sessionStorage`. It works the same as `window.sessionStorage` but supports only string items. |
 
 **Note 1:**
-There is also a helper abstract class named `ProxyStorage` that is intended to work both with `window.localStorage` and `window.sessionStorage`.
+There is also a helper abstract class named `ProxyStorage` that is intended to work with both `window.localStorage` and `window.sessionStorage`.
 
 **Note 2:**
 `LocalStorage` and `SessionStorage` classes enables us to support storing items in a format different than the ordinary `string` type such as `JSON`. This is how the two following classes are defined.
@@ -76,7 +76,7 @@ console.log(store.containsKey('key6'));    // false
 console.log(store.keyIndex('key3'));    // 2
 console.log(store.key(3));    // key4
 
-console.log(store.keys());    // [ "key1", "key2", "key3", "key4" ]
+console.log(store.keys);    // [ "key1", "key2", "key3", "key4" ]
 
 console.log(store.getItem('key1')); // 'test'
 console.log(store.getItem('key2')); // 23
