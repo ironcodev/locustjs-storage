@@ -1,8 +1,8 @@
-import { isEmpty } from "locustjs-base";
+import { isEmpty } from "@locustjs/base";
 import {
   throwIfInstantiateAbstract,
   throwNotImplementedException,
-} from "locustjs-exception";
+} from "@locustjs/exception";
 
 class StorageBase {
   constructor() {
@@ -51,14 +51,18 @@ class StorageBase {
   }
   removeItem(key) {
     if (isEmpty(key)) {
-      return;
+      return false;
     }
-
+    
     if (this._removeItem(key)) {
       const index = this._keys.indexOf(key);
 
       this._keys.splice(index, 1);
+
+      return true;
     }
+
+    return false;
   }
   _clear() {
     throwNotImplementedException("StorageBase._clear");
@@ -70,7 +74,7 @@ class StorageBase {
   containsKey(key) {
     return this.keyIndex(key) >= 0;
   }
-  keys() {
+  get keys() {
     return [...this._keys];
   }
   key(index) {
@@ -127,7 +131,7 @@ class ProxyStorage extends StorageBase {
     }
   }
   _removeItem(key) {
-    this._store.removeItem(key);
+    return this._store.removeItem(key);
   }
   _clear() {
     if (this._store) {
